@@ -48,44 +48,44 @@ JERRY_UNITTESTS_OPTIONS = [
 
 # Test options for jerry-tests
 JERRY_TESTS_OPTIONS = [
-    Options('jerry_tests'),
+    # Options('jerry_tests'),
     Options('jerry_tests-debug',
             ['--debug']),
-    Options('jerry_tests-debug-cpointer_32bit',
-            ['--debug', '--cpointer-32bit=on', '--mem-heap=1024']),
-    Options('jerry_tests-snapshot',
-            ['--snapshot-save=on', '--snapshot-exec=on', '--jerry-cmdline-snapshot=on'],
-            ['--snapshot']),
-    Options('jerry_tests-debug-snapshot',
-            ['--debug', '--snapshot-save=on', '--snapshot-exec=on', '--jerry-cmdline-snapshot=on'],
-            ['--snapshot']),
-    Options('jerry_tests-es2015_subset-debug',
-            ['--debug', '--profile=es2015-subset']),
-    Options('jerry_tests-debug-external_context',
-            ['--debug', '--jerry-libc=off', '--external-context=on'])
+    # Options('jerry_tests-debug-cpointer_32bit',
+    #         ['--debug', '--cpointer-32bit=on', '--mem-heap=1024']),
+    # Options('jerry_tests-snapshot',
+    #         ['--snapshot-save=on', '--snapshot-exec=on', '--jerry-cmdline-snapshot=on'],
+    #         ['--snapshot']),
+    # Options('jerry_tests-debug-snapshot',
+    #         ['--debug', '--snapshot-save=on', '--snapshot-exec=on', '--jerry-cmdline-snapshot=on'],
+    #         ['--snapshot']),
+    # Options('jerry_tests-es2015_subset-debug',
+    #         ['--debug', '--profile=es2015-subset']),
+    # Options('jerry_tests-debug-external_context',
+    #         ['--debug', '--jerry-libc=off', '--external-context=on'])
 ]
 
 # Test options for jerry-test-suite
 JERRY_TEST_SUITE_OPTIONS = JERRY_TESTS_OPTIONS[:]
 JERRY_TEST_SUITE_OPTIONS.extend([
-    Options('jerry_test_suite-minimal',
-            ['--profile=minimal']),
-    Options('jerry_test_suite-minimal-snapshot',
-            ['--profile=minimal', '--snapshot-save=on', '--snapshot-exec=on', '--jerry-cmdline-snapshot=on'],
-            ['--snapshot']),
-    Options('jerry_test_suite-minimal-debug',
-            ['--debug', '--profile=minimal']),
-    Options('jerry_test_suite-minimal-debug-snapshot',
-            ['--debug', '--profile=minimal', '--snapshot-save=on', '--snapshot-exec=on', '--jerry-cmdline-snapshot=on'],
-            ['--snapshot']),
-    Options('jerry_test_suite-es2015_subset',
-            ['--profile=es2015-subset']),
-    Options('jerry_test_suite-es2015_subset-snapshot',
-            ['--profile=es2015-subset', '--snapshot-save=on', '--snapshot-exec=on', '--jerry-cmdline-snapshot=on'],
-            ['--snapshot']),
-    Options('jerry_test_suite-es2015_subset-debug-snapshot',
-            ['--debug', '--profile=es2015-subset', '--snapshot-save=on', '--snapshot-exec=on', '--jerry-cmdline-snapshot=on'],
-            ['--snapshot'])
+    # Options('jerry_test_suite-minimal',
+    #         ['--profile=minimal']),
+    # Options('jerry_test_suite-minimal-snapshot',
+    #         ['--profile=minimal', '--snapshot-save=on', '--snapshot-exec=on', '--jerry-cmdline-snapshot=on'],
+    #         ['--snapshot']),
+    # Options('jerry_test_suite-minimal-debug',
+    #         ['--debug', '--profile=minimal']),
+    # Options('jerry_test_suite-minimal-debug-snapshot',
+    #         ['--debug', '--profile=minimal', '--snapshot-save=on', '--snapshot-exec=on', '--jerry-cmdline-snapshot=on'],
+    #         ['--snapshot']),
+    # Options('jerry_test_suite-es2015_subset',
+    #         ['--profile=es2015-subset']),
+    # Options('jerry_test_suite-es2015_subset-snapshot',
+    #         ['--profile=es2015-subset', '--snapshot-save=on', '--snapshot-exec=on', '--jerry-cmdline-snapshot=on'],
+    #         ['--snapshot']),
+    # Options('jerry_test_suite-es2015_subset-debug-snapshot',
+    #         ['--debug', '--profile=es2015-subset', '--snapshot-save=on', '--snapshot-exec=on', '--jerry-cmdline-snapshot=on'],
+    #         ['--snapshot'])
 ])
 
 # Test options for test262

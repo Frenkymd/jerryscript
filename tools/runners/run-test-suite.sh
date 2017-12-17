@@ -31,6 +31,10 @@ TESTS="$1"
 shift
 
 OUTPUT_DIR=`dirname $ENGINE`
+BUILD_DIR=`dirname $OUTPUT_DIR`
+SODA_DIR=$BUILD_DIR/SoDA
+COV_DIR=$SODA_DIR/coverage
+RES_DIR=$SODA_DIR/results/0
 TESTS_BASENAME=`basename $TESTS`
 
 TEST_FILES=$OUTPUT_DIR/$TESTS_BASENAME.files
@@ -123,6 +127,10 @@ passed=0
 
 ENGINE_TEMP=`mktemp engine-out.XXXXXXXXXX`
 
+rm -rf $COV_DIR $RES_DIR
+
+mkdir -p $RES_DIR
+
 for test in `cat $TEST_FILES`
 do
     if [[ $test =~ ^\.\/fail\/ ]]
@@ -135,6 +143,8 @@ do
     fi
 
     full_test=$TESTS_DIR/${test#./}
+
+    find $BUILD_DIR -type f -iname "*.gcda" -delete
 
     if [ "$IS_SNAPSHOT" == true ]
     then
@@ -161,6 +171,16 @@ do
         status_code=$?
     fi
 
+    TEST_DIR=$COV_DIR/$tested
+
+    mkdir -p $TEST_DIR
+
+    pushd $TEST_DIR > /dev/null
+
+    find $BUILD_DIR -type f -iname "*.gcno" -exec gcov {} \; &>/dev/null
+
+    popd > /dev/null
+
     if [ $status_code -ne $error_code ]
     then
         echo "[$tested/$TOTAL] $cmd_line: FAIL ($status_code)"
@@ -173,11 +193,15 @@ do
         echo >> $TEST_FAILED
         echo >> $TEST_FAILED
 
+        echo -e "FAIL: $tested" >> $RES_DIR/results.txt
+
         failed=$((failed+1))
     else
         echo "[$tested/$TOTAL] $cmd_line: $PASS"
 
         echo "$test" >> $TEST_PASSED
+
+        echo -e "PASS: $tested" >> $RES_DIR/results.txt
 
         passed=$((passed+1))
     fi
